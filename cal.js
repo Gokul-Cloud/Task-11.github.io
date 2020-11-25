@@ -1,6 +1,7 @@
 window.addEventListener('DOMContentLoaded',init);
 const opts = ['*', '/','+','-','9','8','7','6','5','4','3','2','1','0','.'];
 const spec = ['*', '/','+','-'];
+var stringMath = require('string-math');
 
 function init(){
     document.title = " DOM Calculator";
@@ -57,18 +58,19 @@ function init(){
 
     function addmemory()
     {
-        var array = [];
-        array.push(output.value)
-         sessionStorage.setItem('array', JSON.stringify(array));
+        
+        var arrayhistory = JSON.parse(localStorage.getItem("items")) || [];
+        arrayhistory.push(output.value);
+        localStorage.setItem("items", JSON.stringify(arrayhistory));
     }
 
     function clearmemory()
     {
-        sessionStorage.clear();
+        localStorage.clear();
     }
      function memoryshow()
      {
-        console.log(sessionStorage);
+        console.log(localStorage);
      }
 
 
