@@ -6,6 +6,8 @@ var stringMath = require('string-math');
 function init(){
     document.title = " DOM Calculator";
     console.log('ready');
+    let dec = false;
+    let eva = false;
     const container = document.createElement('div');
     container.classList.add('container');
     container.style.maxWidth ='600px';
@@ -44,7 +46,7 @@ function init(){
            output.style.border = 'red 1px solid';
        } 
        else{
-           output.value = (new Function('return '+ output.value))();
+           output.value = (new Function('return '+ output.value))(); // used new function instead of eval, new function doest have the security issue which eval had
        }
 
     }
@@ -89,9 +91,27 @@ function init(){
     }
     function addOutput(e)
     {
+        output.style.border = 'black 1px solid';
     console.log(e.target.val);
     let char = e.target.val;
+    if(char=='.')
+    {
+        if(dec)
+        {
+            char = '';
+            output.style.border = 'red 1px solid';
+        }
+        else{
+            dec = true;
+        }
+    }
+    eva = spec.includes(char)
+    if(eva)
+    {
+        dec = false;
+    }
     output.value += char;
+  
     }
 
 
