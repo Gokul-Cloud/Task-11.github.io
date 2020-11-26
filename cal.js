@@ -70,7 +70,7 @@ function init(){
     }
      function memoryshow()
      {
-        console.log(localStorage);
+         addoutput(localStorage);
      }
 
 
